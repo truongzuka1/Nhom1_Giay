@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Nhom1_Giay.Models.Shoe>
+
+@{
+    ViewData["Title"] = "Danh sách Sản phẩm";
+}
+
+<h2>Danh sách Sản phẩm</h2>
+
+<!-- Tìm kiếm và lọc theo danh mục -->
+<form method="get">
+    <div class="form-group">
+        <input type="text" name="search" class="form-control" placeholder="Tìm kiếm theo tên sản phẩm" value="@ViewData["Search"]" />
+    </div>
+    
+    <div class="form-group">
+  <select name="categoryId" class="form-control">
+    <option value="">--Chọn Danh Mục--</option>
+</select>
+
+
+
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+</form>
+
+<!-- Hiển thị danh sách sản phẩm -->
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Danh mục</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+                <td>@product.Category.Name</td>
+                <td>
+                    <!-- Liên kết sửa và xóa sản phẩm -->
+                    <a href="@Url.Action("Edit", new { id = product.ShoeId })" class="btn btn-warning">Sửa</a>
+                    <a href="@Url.Action("Delete", new { id = product.ShoeId })" class="btn btn-danger">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create")" class="btn btn-success">Tạo sản phẩm mới</a>

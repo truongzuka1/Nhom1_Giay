@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Nhom1_Giay.Models.Order>
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<h2>Orders</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>User ID</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>@order.UserId</td>
+                <td>@order.Status</td>
+                <td>
+                    <!-- You can add edit/delete actions here -->
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("CreateOrder")" class="btn btn-primary">Create New Order</a>
